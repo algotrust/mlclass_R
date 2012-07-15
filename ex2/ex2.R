@@ -34,6 +34,7 @@ X$V0 <- rep(1,m)
 X <- X[c('V0','V1','V2')]
 initial_theta <- rep(0,n+1)
 
+#===== Computing cost of initial cost function ==========
 cost <- cost(initial_theta,X,y)
 grad <- gradient(initial_theta,X,y)
 print(paste('Cost at initial theta (zeros):', cost))

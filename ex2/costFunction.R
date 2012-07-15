@@ -1,5 +1,10 @@
-costFunction <- function(theta, X, y){
-  m <- length(y)
+cost <- function(theta, X, y){
   J <- 0
-  grad <- rep(0, m)
+  return(J)
+}
+
+gradient <- function(theta, X, y){
+  n <- length(theta)
+  grad <- rep(0, n)
+  return(grad)
 }
