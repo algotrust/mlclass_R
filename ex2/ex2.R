@@ -24,7 +24,7 @@ print(p)
 #=========Part 2. Computing cost and gradient ==================
 #Initializing input variables X and output variables y
 X <- data[,c(1,2)]
-y <- data[,3]
+y <- as.numeric(data[,3]) - 1
 
 m <- nrow(X)  
 n <- ncol(X)
