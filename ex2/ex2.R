@@ -1,5 +1,6 @@
 #!/usr/bin/Rscript
 library(ggplot2)
+library(trust)
 #Closing all the plots and resetting all the variables in the workspace
 graphics.off()
 rm(list = ls())
@@ -35,11 +36,10 @@ X <- X[c('V0','V1','V2')]
 initial_theta <- rep(0,n+1)
 
 #===== Computing cost of initial cost function ==========
-cost <- cost(initial_theta,X,y)
-grad <- gradient(initial_theta,X,y)
-print(paste('Cost at initial theta (zeros):', cost))
+cost <- costFun(initial_theta,X,y)
+print(paste('Cost at initial theta (zeros):', cost["cost"]))
 print("Gradient at initial theta (zeros):")
-print(grad)
+print(cost["gradient"])
 #Pausing execution
 cat("Hit <enter> to continue...")
 readline()
