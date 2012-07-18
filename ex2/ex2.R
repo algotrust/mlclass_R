@@ -39,10 +39,9 @@ X <- X[c('V0','V1','V2')]
 initial_theta <- rep(0,n+1)
 
 #===== Computing cost of initial cost function ==========
-cost <- costFun(initial_theta,X,y)
-print(paste('Cost at initial theta (zeros):', cost["value"]))
+print(paste('Cost at initial theta (zeros):', cost(initial_theta,X,y)))
 print("Gradient at initial theta (zeros):")
-print(cost["gradient"])
+print(gradient(initial_theta,X,y))
 #Pausing execution
 cat("Program paused. Press enter to continue...")
 readline()
@@ -50,5 +49,5 @@ readline()
 # Finding optimal parameters with optim function.
 # Tip from stackoverflow: 
 # More info: ?optim
-o <- optim(initial_theta, cst,X=X, y=y)
-optim_theta <- 
+o <- optim(initial_theta, cost,X=X, y=y)
+
