@@ -39,15 +39,20 @@ X <- X[c('V0','V1','V2')]
 initial_theta <- rep(0,n+1)
 
 #===== Computing cost of initial cost function ==========
-print(paste('Cost at initial theta (zeros):', cost(initial_theta,X,y)))
-print("Gradient at initial theta (zeros):")
+cat(sprintf('Cost at initial theta (zeros): %f\n', cost(initial_theta,X,y)))
+cat("Gradient at initial theta (zeros):\n")
 print(gradient(initial_theta,X,y))
 #Pausing execution
 cat("Program paused. Press enter to continue...")
 readline()
 #===== Finding optimal parameters with optim function =====
 # Finding optimal parameters with optim function.
-# Tip from stackoverflow: 
+# Tip from stackoverflow: http://stackoverflow.com/q/11546036/218584
 # More info: ?optim
 o <- optim(initial_theta, cost,X=X, y=y)
-
+opt_params <- unlist(o["par"])
+names(opt_params) <- c("theta0", "theta1","theta2")
+# Printing values
+cat(sprintf('Cost at theta found by optim: %f\n', o["value"]))
+cat("Optimal params: \n")
+print(opt_params)
