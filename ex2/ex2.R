@@ -22,6 +22,9 @@ p <- ggplot(data, aes(x = V1, y = V2, color = V3, shape = V3)) +
    scale_colour_hue(name = "Admitted?", labels=c("No", "Yes")) +
    scale_shape(name = "Admitted?", labels=c("No", "Yes"))   
 print(p)
+#Pausing execution
+cat("Program paused. Press enter to continue...")
+readline()
 #=========Part 2. Computing cost and gradient ==================
 #Initializing input variables X and output variables y
 X <- data[,c(1,2)]
@@ -37,9 +40,15 @@ initial_theta <- rep(0,n+1)
 
 #===== Computing cost of initial cost function ==========
 cost <- costFun(initial_theta,X,y)
-print(paste('Cost at initial theta (zeros):', cost["cost"]))
+print(paste('Cost at initial theta (zeros):', cost["value"]))
 print("Gradient at initial theta (zeros):")
 print(cost["gradient"])
 #Pausing execution
-cat("Hit <enter> to continue...")
+cat("Program paused. Press enter to continue...")
 readline()
+#===== Finding optimal parameters with optim function =====
+# Finding optimal parameters with optim function.
+# Tip from stackoverflow: 
+# More info: ?optim
+o <- optim(initial_theta, cst,X=X, y=y)
+optim_theta <- 
