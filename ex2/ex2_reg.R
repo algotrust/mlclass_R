@@ -23,4 +23,39 @@ print(p)
 #Pausing execution
 cat("Program paused. Press enter to continue...")
 readline()
-#======= Part2
+#======= Part2 Finding optimal params ====
+
+#=========Part 2. Computing cost and gradient ==================
+#Initializing input variables X and output variables y
+X <- data[,c(1,2)]
+y <- as.numeric(data[,3]) - 1
+
+m <- nrow(X)  
+n <- ncol(X)
+
+#Adding intercept term and initializing parameters
+X$V0 <- rep(1,m)
+X <- X[c('V0','V1','V2')]
+initial_theta <- rep(0,n+1)
+
+# Setting upregularization parameter
+lambda <- 1
+
+#===== Finding optimal parameters with optim function =====
+# Finding optimal parameters with optim function.
+# Tip from stackoverflow: http://stackoverflow.com/q/11546036/218584
+# More info: ?optim
+o <- optim(initial_theta, cost_reg,X=X, y=y,lambda=lambda)
+opt_params <- unlist(o["par"])
+names(opt_params) <- c("theta0", "theta1","theta2")
+# Printing values
+cat(sprintf('Cost at theta found by optim: %f\n\n', o["value"]))
+cat("Optimal params: \n")
+print(opt_params)
+#=====Plotting decision boundary ========
+
+#==== Prediction and accuracies =========
+# Calculating accuracy of our algorithm on training set
+p <- predict(opt_params, X) == y
+acc <- length(p[p==TRUE])/length(p)
+cat(sprintf('Train accuracy: %f\n',acc))
