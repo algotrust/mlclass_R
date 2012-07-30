@@ -53,9 +53,22 @@ o <- optim(initial_theta, cost,X=X, y=y)
 opt_params <- unlist(o["par"])
 names(opt_params) <- c("theta0", "theta1","theta2")
 # Printing values
-cat(sprintf('Cost at theta found by optim: %f\n', o["value"]))
+cat(sprintf('Cost at theta found by optim: %f\n\n', o["value"]))
 cat("Optimal params: \n")
 print(opt_params)
 #=====Plotting decision boundary ========
+# Adding a lineto existing plot
+# Graph: theta0 + theta1 * x1 + theta2 * x2 = 0
 p <- p + geom_abline(slope=-opt_params['theta1']/opt_params['theta2'],intercept=-opt_params['theta0']/opt_params['theta2'])   
 print(p)
+#Pausing execution
+cat("Program paused. Press enter to continue...")
+readline()
+#==== Prediction and accuracies =========
+#Calculating probability of admission with scores 45 and 85
+prob = sigmoid(c(1,45,85) %*% opt_params);
+cat(sprintf('For a student with scores 45 and 85, we predict an admission probability of %f\n\n',prob))
+# Calculating accuracy of our algorithm on training set
+p <- predict(opt_params, X) == y
+acc <- length(p[p==TRUE])/length(p)
+cat(sprintf('Train accuracy: %f\n',acc))
