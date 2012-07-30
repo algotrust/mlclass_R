@@ -1,6 +1,5 @@
 #!/usr/bin/Rscript
 library(ggplot2)
-library(trust)
 #Closing all the plots and resetting all the variables in the workspace
 graphics.off()
 rm(list = ls())
