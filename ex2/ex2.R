@@ -56,3 +56,6 @@ names(opt_params) <- c("theta0", "theta1","theta2")
 cat(sprintf('Cost at theta found by optim: %f\n', o["value"]))
 cat("Optimal params: \n")
 print(opt_params)
+#=====Plotting decision boundary ========
+p <- p + geom_abline(slope=-opt_params['theta1']/opt_params['theta2'],intercept=-opt_params['theta0']/opt_params['theta2'])   
+print(p)
