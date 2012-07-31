@@ -1,10 +1,3 @@
-gradient_reg <- function(theta, X, y, lambda){
-  n <- ncol(X)
-  X <- as.matrix(X)
-  grad <- rep(0,n)
-  return(grad)
-}
-
 cost_reg <- function(theta, X, y, lambda) {
   m <- nrow(X)
   X <- as.matrix(X)
