@@ -33,16 +33,20 @@ cat("Program paused. Press enter to continue...")
 readline()
 #======= Part2 Finding optimal params ====
 
-#Initializing input variables X and output variables y
+# Initializing input variables X and output variables y
+# Since plot showed that our decision bondary is not linear,
+# we should build more features from each data point.
+# It is given that we will construct a 6th power polynomial out of x1 and x2.
+# The function that dues it is in mapFeature.R
 X <- mapFeature(data[,c(1)],data[,c(2)])
 y <- as.numeric(data[,3]) - 1
 
 m <- nrow(X)  
 n <- ncol(X)
-#initializing theta with uniformly distributed values between 1 and 0 
+# Initialize theta with uniformly distributed values between 1 and 0 
 initial_theta <- runif(n)
 
-# Setting upregularization parameter
+# Setting upregularization parameter equals to 1
 lambda <- 1
 
 #===== Finding optimal parameters with optim function =====
@@ -54,7 +58,7 @@ opt_params <- unlist(o["par"])
 # Printing values
 cat(sprintf('Cost at theta found by optim: %f\n\n', o["value"]))
 #=====Plotting decision boundary ========
-# Inspiration taken from here:
+# Approach taken from here:
 # http://ygc.name/2011/10/26/machine-learning-5-2-regularized-logistic-regression/
 
 #Initializing argument vectors with arbitrary value
