@@ -17,9 +17,29 @@ source('plotData.R')
 cat('Running upwarmup excercise...\n')
 cat('5x5 Identity matrix:\n')
 print(warmUp())
-
+#Pausing execution
+cat("Program paused. Press enter to continue...")
+readline()
 #================ Part 2: Reading data and plotting ==========
 data <- read.delim("ex1data1.txt", header=FALSE, sep=",")
-names(data) <- c('Population','Profit')
 plotData(data)
+#Pausing execution
+cat("Program paused. Press enter to continue...")
+readline()
+#================Part 3: Gragient descent ===================
+cat("Running gradient descent:\n")
+#Initializing variables
+X <- data[,1]
+y <- data[,2]
 
+m <- nrow(X)  
+n <- ncol(X)
+#Adding intercept variable and declaring initial theta
+X$V0<-rep(1,m)
+X <- X[c('V0','V1')]
+initial_theta <- rep(0,n+1)
+# variables for gradient descent
+iterations <- 1500
+alpha <- 0.01
+
+computeCost(X,y,initial_theta)
