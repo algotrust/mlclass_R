@@ -1,3 +1,3 @@
 computeCost <- function(X,y,theta){
-  return 0
+  return(0)
 }
