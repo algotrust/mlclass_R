@@ -53,5 +53,3 @@ print(opt_theta)
 #plot(seq(1,iterations),unlist(opt_params['J_hist']),xlab='iteration number',ylab='cost')
 cat(sprintf('Cost at optimal parameters: %f',computeCost(X,y,opt_theta)))
 abline(opt_theta,lwd=2,col='red')
-
-    
