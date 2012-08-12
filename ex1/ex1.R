@@ -29,9 +29,9 @@ readline()
 #================Part 3: Gragient descent ===================
 cat("Running gradient descent:\n")
 #Initializing variables
-X <- as.data.frame(data[,1])
+X <- data[,c('V1')]
 names(X) <- c('V1')
-y <- data[,2]
+y <- data[,c('V2')]
 m <- length(X)  
 n <- ncol(X)
 # Adding intercept variable and declaring initial theta, learning rate
