@@ -29,17 +29,23 @@ readline()
 #================Part 3: Gragient descent ===================
 cat("Running gradient descent:\n")
 #Initializing variables
-X <- data[,1]
+X <- as.data.frame(data[,1])
+names(X) <- c('V1')
 y <- data[,2]
 
-m <- nrow(X)  
+m <- length(X)  
 n <- ncol(X)
 #Adding intercept variable and declaring initial theta
 X$V0<-rep(1,m)
 X <- X[c('V0','V1')]
-initial_theta <- rep(0,n+1)
+n <- ncol(X)
+initial_theta <- rep(0,n)
 # variables for gradient descent
 iterations <- 1500
 alpha <- 0.01
 
-computeCost(X,y,initial_theta)
+init_cost <- computeCost(X,y,initial_theta)
+cat(sprintf('Cost with all the parameters equal to 0:\t %f \n', init_cost))
+
+opt_theta <- gradientDescent(X,y,initial_theta,alpha,iterations)
+print(opt_theta)
