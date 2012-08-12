@@ -48,4 +48,5 @@ init_cost <- computeCost(X,y,initial_theta)
 cat(sprintf('Cost with all the parameters equal to 0:\t %f \n', init_cost))
 
 opt_theta <- gradientDescent(X,y,initial_theta,alpha,iterations)
-print(opt_theta)
+print(opt_theta['theta'])
+plot(unlist(opt_theta['J_hist']),seq(1,iterations))
