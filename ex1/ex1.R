@@ -32,21 +32,26 @@ cat("Running gradient descent:\n")
 X <- as.data.frame(data[,1])
 names(X) <- c('V1')
 y <- data[,2]
-
 m <- length(X)  
 n <- ncol(X)
-#Adding intercept variable and declaring initial theta
+# Adding intercept variable and declaring initial theta, learning rate
+# and number of iterations for gradient descent
 X$V0<-rep(1,m)
 X <- X[c('V0','V1')]
 n <- ncol(X)
 initial_theta <- rep(0,n)
-# variables for gradient descent
 iterations <- 1500
 alpha <- 0.01
-
 init_cost <- computeCost(X,y,initial_theta)
 cat(sprintf('Cost with all the parameters equal to 0:\t %f \n', init_cost))
+opt_params <- gradientDescent(X,y,initial_theta,alpha,iterations)
+opt_theta <- unlist(opt_params['theta'])
+names(opt_theta)<-c('theta0','theta1')
+# Printing optimal values and plots
+print('Optimal parameters found by gradient descent: ')
+print(opt_theta)
+#plot(seq(1,iterations),unlist(opt_params['J_hist']),xlab='iteration number',ylab='cost')
+cat(sprintf('Cost at optimal parameters: %f',computeCost(X,y,opt_theta)))
+abline(opt_theta,lwd=2,col='red')
 
-opt_theta <- gradientDescent(X,y,initial_theta,alpha,iterations)
-print(opt_theta['theta'])
-plot(unlist(opt_theta['J_hist']),seq(1,iterations))
+    
