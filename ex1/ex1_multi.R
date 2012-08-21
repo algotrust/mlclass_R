@@ -19,3 +19,31 @@ source('plotData.R')
 data <- read.delim('ex1data2.txt',sep=",",header=FALSE)
 X <- data[,c('V1','V2')]
 y <- data[,c('V3')]
+m <- nrow(X)
+n <- ncol(X)
+
+#======Part 1: normalizing features ===========
+X.norm <- featureNormalize(X)
+mju <- apply(X,2,median)
+stddev <- apply(X,2,sd)
+X.norm$V0 <- rep(1,m)
+X.norm <- X.norm[c('V0','V1','V2')]
+
+#======Part 2: running gradient descent ======
+# Necessary variables for gradient descent 
+initial_theta <- rep(0,n+1)
+iterations <- 1500
+alpha <- 0.01
+
+print("Running gradient descent...")
+opt_params <- gradientDescent(X.norm,y,initial_theta,alpha,iterations)
+
+opt_theta <- unlist(opt_params['theta'])
+names(opt_theta)<-c('theta0','theta1','theta2')
+
+print('Optimal parameters found by gradient descent: ')
+print(opt_theta)
+cat(sprintf('Cost at optimal parameters: %f',computeCost(X,y,opt_theta)))
+
+#=========== Part 3: Normal equations ========
+
