@@ -1,4 +1,4 @@
 normalEqn <- function(X,y){
   X <- as.matrix(X)
-  return(ncol(X))
+  solve(t(X)%*%X) %*% t(X) %*% y
 }
