@@ -48,9 +48,9 @@ cat(sprintf('Cost at optimal parameters: %f\n\n',computeCost(X.norm,y,opt_theta)
 #=========== Part 3: Normal equations ========
 cat("Calculating optimal parameters using normal equations.\n")
 X$V0 <- rep(1,m)
+X <- X[c('V0','V1','V2')]
 theta_norm_eqn = as.numeric(normalEqn(X,y))
-names(theta_norm_eqn) = c('theta1','theta2','theta0')
-theta_norm_eqn <- theta_norm_eqn[c('theta0','theta1','theta2')]
+names(theta_norm_eqn) = c('theta0','theta1','theta2')
 cat('Optimal parameters found by normal equations:\n')
 print(theta_norm_eqn)
 cat(sprintf('Cost at optimal parameters: %f\n\n',computeCost(X,y,theta_norm_eqn)))
