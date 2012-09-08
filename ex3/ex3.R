@@ -32,3 +32,6 @@ for (i in 1:100) {
 }
 ## ============ Part 2: Vectorize Logistic Regression ============
 cat('Training One-vs-All Logistic Regression...\n\n')  
+lambda <- 0.1
+num_labels <- 10; 
+all_theta <- oneVsAll(X,y,num_labels, lambda)
