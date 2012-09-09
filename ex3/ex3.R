@@ -35,3 +35,9 @@ cat('Training One-vs-All Logistic Regression...\n\n')
 lambda <- 0.1
 num_labels <- 10; 
 all_theta <- oneVsAll(X,y,num_labels, lambda)
+
+## ================ Part 3: Predict for One-Vs-All ================
+
+pred <- predictOneVsAll(all_theta, X) == y
+acc <- length(pred[pred==TRUE])/length(pred)
+cat(sprintf('Train accuracy: %f\n',acc))
